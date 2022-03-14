@@ -131,7 +131,7 @@ function App() {
                       </CardContent>
                       <CardActions>
                         <div  dir="rtl">
-                          <FormDialog Email={val.Email} UpdateClick={updateUser()}></FormDialog>
+                          <FormDialog Email={val.Email} updateClick={updateUser}></FormDialog>
                         </div>
                         <Button sx={{ }} variant="outlined" color="error" onClick={() => deleteUser(val.Email)}>מחק</Button>
                       </CardActions>

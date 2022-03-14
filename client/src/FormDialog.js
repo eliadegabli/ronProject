@@ -10,7 +10,7 @@ import Axios from "axios";
 
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
-  const {updateUser,setupdateUser} = props.updateUser;
+ // const {updateUser,setupdateUser} = props.UpdateClick;
   const [Phone,setPhone] = useState('');
   const [FirstName,setFirstName] = useState('');
   const [LastName,setLastName] = useState('');
@@ -70,7 +70,7 @@ export default function FormDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-            <Button variant="contained" onClick={this.props.UpdateClick(Phone,FirstName,LastName)}>עדכן</Button>  
+            <Button variant="contained" onClick={props.updateClick(Phone,FirstName,LastName)}>עדכן</Button>  
             <Button variant="contained" onClick={handleClose}>סגור</Button>
         </DialogActions>
       </Dialog>
