@@ -24,7 +24,7 @@ function App() {
   useEffect(()=>{
     Axios.get("http://localhost:3001/api/get").then((response) => {
       setUsersList(response.data);
-      console.log(response.data);
+      console.log(response.data + "1");
     })    
   }, [])
 
@@ -51,14 +51,14 @@ function App() {
     })
   };
 
-  const updateUser = (phone,firsName,lastName) => {
+  const updateUser = (email,phone,firsName,lastName) => {
     Axios.put("http://localhost:3001/api/update", {
-      Email:Email,
+      Email:email,
       Phone:phone,
       FirstName:firsName,
       LastName:lastName,
     });
-    
+    setUsersList(UsersList);
   };
 
   return (
@@ -131,7 +131,7 @@ function App() {
                       </CardContent>
                       <CardActions>
                         <div  dir="rtl">
-                          <FormDialog Email={val.Email} updateClick={updateUser}></FormDialog>
+                          <FormDialog Email={val.Email} updateUser={updateUser}></FormDialog>
                         </div>
                         <Button sx={{ }} variant="outlined" color="error" onClick={() => deleteUser(val.Email)}>מחק</Button>
                       </CardActions>

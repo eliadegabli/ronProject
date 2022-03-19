@@ -8,9 +8,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Axios from "axios";
 
-export default function FormDialog(props) {
+export default function FormDialog({Email,updateUser}) {
   const [open, setOpen] = React.useState(false);
- // const {updateUser,setupdateUser} = props.UpdateClick;
   const [Phone,setPhone] = useState('');
   const [FirstName,setFirstName] = useState('');
   const [LastName,setLastName] = useState('');
@@ -18,7 +17,6 @@ export default function FormDialog(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    console.log();
   };
 
   const handleClose = () => {
@@ -36,8 +34,8 @@ export default function FormDialog(props) {
         <DialogContent>
           <TextField
             autoFocus
-            id="phone"
-            name="phone"
+            id="Phone"
+            name="Phone"
             label="מס' טלפון"
             type="text"
             fullWidth
@@ -48,7 +46,8 @@ export default function FormDialog(props) {
           />
           <TextField
             autoFocus
-            id="firsName"
+            id="FirsName"
+            name="FName"
             label="שם פרטי"
             type="text"
             fullWidth
@@ -59,7 +58,8 @@ export default function FormDialog(props) {
           />
           <TextField
             autoFocus
-            id="lastName"
+            id="LastName"
+            name="LName"
             label="שם משפחה"
             type="tezt"
             fullWidth
@@ -70,7 +70,7 @@ export default function FormDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-            <Button variant="contained" onClick={props.updateClick(Phone,FirstName,LastName)}>עדכן</Button>  
+            <Button variant="contained" onClick={() =>  updateUser(Email,Phone,FirstName,LastName)}>עדכן</Button>  
             <Button variant="contained" onClick={handleClose}>סגור</Button>
         </DialogActions>
       </Dialog>

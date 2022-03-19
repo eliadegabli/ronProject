@@ -35,7 +35,7 @@ app.put("/api/update",(req,res)=>{
     const sqlUpdate = "Update users set Phone=?,First_Name=?,Last_Name=? Where Email=?;"
     db.query(sqlUpdate, [Phone,FirstName,LastName,Email] ,(err,result) =>{
         res.send(result);    
-        console.log(err);         
+        console.log(err + "999");         
     });
 });
 
