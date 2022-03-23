@@ -22,6 +22,7 @@ app.post("/api/insert",(req,res)=>{
     const LastName = req.body.LastName;
     const sqlInsert = "Insert Into users (Email,Phone,First_Name,Last_Name) Values (?,?,?,?);"
     db.query(sqlInsert, [Email,Phone,FirstName,LastName] ,(err,result) =>{
+        res.send(result);
         console.log(result);     
         console.log(err);         
     });
@@ -34,8 +35,13 @@ app.put("/api/update",(req,res)=>{
     const LastName = req.body.LastName;
     const sqlUpdate = "Update users set Phone=?,First_Name=?,Last_Name=? Where Email=?;"
     db.query(sqlUpdate, [Phone,FirstName,LastName,Email] ,(err,result) =>{
-        res.send(result);    
-        console.log(err + "999");         
+        const sqlSelect = "Select * From users;"
+        db.query(sqlSelect, (err,result) =>{
+            res.send(result);  
+            console.log(result);        
+        });
+        //res.send(result);
+        //console.log(result);            
     });
 });
 
@@ -50,8 +56,7 @@ app.post("/api/delete", (req,res) =>{
     const Email = req.body.Email;
     const sqlDelete = "delete from users where Email=?;"
     db.query(sqlDelete, Email, (err,result) =>{
-        res.send(result); 
-        console.log(result);        
+        res.send(result);        
     });
 }); 
 

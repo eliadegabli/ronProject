@@ -70,7 +70,7 @@ export default function FormDialog({Email,updateUser}) {
           />
         </DialogContent>
         <DialogActions>
-            <Button variant="contained" onClick={() =>  updateUser(Email,Phone,FirstName,LastName)}>עדכן</Button>  
+            <Button variant="contained" onClick={() =>  updateUser(Email,Phone,FirstName,LastName,handleClose)}>עדכן</Button>  
             <Button variant="contained" onClick={handleClose}>סגור</Button>
         </DialogActions>
       </Dialog>

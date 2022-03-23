@@ -24,7 +24,7 @@ function App() {
   useEffect(()=>{
     Axios.get("http://localhost:3001/api/get").then((response) => {
       setUsersList(response.data);
-      console.log(response.data + "1");
+      console.log(response.data);
     })    
   }, [])
 
@@ -35,12 +35,14 @@ function App() {
       Phone:Phone,
       FirstName:FirstName,
       LastName:LastName,
+    }).then(() => {
+      setUsersList([
+        ...UsersList,
+        {First_Name: FirstName,Last_Name: LastName,Email : Email},
+      ]);
     })
 
-    setUsersList([
-      ...UsersList,
-      {First_Name: FirstName,Last_Name: LastName,Email : Email},
-    ]);
+    
   };
 
   const deleteUser = (eMail) => {
@@ -51,14 +53,16 @@ function App() {
     })
   };
 
-  const updateUser = (email,phone,firsName,lastName) => {
+  const updateUser = (email,phone,firsName,lastName,bClose) => {
     Axios.put("http://localhost:3001/api/update", {
       Email:email,
       Phone:phone,
       FirstName:firsName,
       LastName:lastName,
-    });
-    setUsersList(UsersList);
+    }).then((response) => {
+      setUsersList(response.data);
+      bClose();
+    }); 
   };
 
   return (
