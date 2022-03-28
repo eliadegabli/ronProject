@@ -12,6 +12,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import FormDialog from "./FormDialog";
 import { withEmotionCache } from "@emotion/react";
+import Album from "./Album";
 
 function App() {
   const [Email,setEmail] = useState('');
@@ -66,7 +67,9 @@ function App() {
   };
 
   return (
+    
     <div className="App" dir="rtl">
+      <Album />  
       <form className='form'>
         <Grid container spacing={2}>
           <Grid item xs={3}>

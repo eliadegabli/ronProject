@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Album from './Album';
 import App from './App';
 
 ReactDOM.render(
