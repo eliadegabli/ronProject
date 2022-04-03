@@ -44,7 +44,7 @@ export default function Album() {
   const [UsersList,setUsersList] = useState([]);
   
   useEffect(()=>{
-    Axios.get("http://localhost:3001/api/get").then((response) => {
+    Axios.get("http://localhost:5000/api/get").then((response) => {
       setUsersList(response.data);
       console.log(response.data);
     })    
@@ -52,7 +52,7 @@ export default function Album() {
 
   const submitUser = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3001/api/insert", {
+    Axios.post("http://localhost:5000/api/insert", {
       Email:Email,
       Phone:Phone,
       FirstName:FirstName,
@@ -67,7 +67,7 @@ export default function Album() {
   };
 
   const updateUser = (email,phone,firsName,lastName,bClose) => {
-    Axios.put("http://localhost:3001/api/update", {
+    Axios.put("http://localhost:5000/api/update", {
       Email:email,
       Phone:phone,
       FirstName:firsName,
@@ -79,7 +79,7 @@ export default function Album() {
   };
 
   const deleteUser = (eMail) => {
-    Axios.post("http://localhost:3001/api/delete", {
+    Axios.post("http://localhost:5000/api/delete", {
       Email:eMail,
     }).then(()=> {
         setUsersList(UsersList.filter(item => item.Email !== eMail));
