@@ -4,9 +4,7 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Axios from "axios";
 
 export default function FormDialog({Email,updateUser}) {
   const [open, setOpen] = React.useState(false);
@@ -25,7 +23,7 @@ export default function FormDialog({Email,updateUser}) {
 
 
   return (
-    <div  dir="rtl">
+    <div>
       <Button variant="outlined" color="success" onClick={handleClickOpen}>
         עדכון לקוח
       </Button>
@@ -61,7 +59,7 @@ export default function FormDialog({Email,updateUser}) {
             id="LastName"
             name="LName"
             label="שם משפחה"
-            type="tezt"
+            type="text"
             fullWidth
             variant="standard"
             onChange={(e) => {
@@ -69,9 +67,9 @@ export default function FormDialog({Email,updateUser}) {
             }}
           />
         </DialogContent>
-        <DialogActions>
-            <Button variant="contained" onClick={() =>  updateUser(Email,Phone,FirstName,LastName,handleClose)}>עדכן</Button>  
+        <DialogActions  sx={{ justifyContent: 'left' }}>
             <Button variant="contained" onClick={handleClose}>סגור</Button>
+            <Button variant="contained" onClick={() =>  updateUser(Email,Phone,FirstName,LastName,handleClose)}>עדכן</Button> 
         </DialogActions>
       </Dialog>
     </div>

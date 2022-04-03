@@ -32,8 +32,6 @@ function Copyright() {
   );
 }
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 const theme = createTheme();
 
 export default function Album() {
@@ -41,6 +39,7 @@ export default function Album() {
   const [Phone,setPhone] = useState('');
   const [FirstName,setFirstName] = useState('');
   const [LastName,setLastName] = useState('');
+  const [BirthDate,setBirthDate] = useState('');
 
   const [UsersList,setUsersList] = useState([]);
   
@@ -58,10 +57,11 @@ export default function Album() {
       Phone:Phone,
       FirstName:FirstName,
       LastName:LastName,
+      BirthDate:BirthDate,
     }).then(() => {
       setUsersList([
         ...UsersList,
-        {First_Name: FirstName,Last_Name: LastName,Email : Email},
+        {First_Name: FirstName,Last_Name: LastName,Email : Email,Birth_Date: BirthDate},
       ]);
     })
   };
@@ -76,6 +76,14 @@ export default function Album() {
       setUsersList(response.data);
       bClose();
     }); 
+  };
+
+  const deleteUser = (eMail) => {
+    Axios.post("http://localhost:3001/api/delete", {
+      Email:eMail,
+    }).then(()=> {
+        setUsersList(UsersList.filter(item => item.Email !== eMail));
+    })
   };
 
   return (
@@ -94,8 +102,8 @@ export default function Album() {
         <Box
           sx={{
             bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
+            pt: 5,
+            pb: 2,
           }}
         >
           <Container maxWidth="sm">
@@ -164,6 +172,17 @@ export default function Album() {
                         }}
                         />                
                     </Grid>
+                    <Grid item xs={3}>
+                        <Input 
+                        type="text" 
+                        name="Bdate" 
+                        placeholder="תאריך לידה"
+                        dir="rtl"
+                        onChange={(e) => {
+                            setBirthDate(e.target.value);
+                        }}
+                        />                
+                    </Grid>
                     <Grid item xs={12}>
                         <Button variant="contained"  onClick={(e) => submitUser(e)}>הוספה</Button>
                     </Grid>
@@ -171,9 +190,9 @@ export default function Album() {
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 2 }} maxWidth="md">
           {/* End hero unit */}
-          <Grid container spacing={4}>
+          <Grid container spacing={3} >
             {UsersList.map((card) => (
               <Grid item key={card.Email} xs={12} sm={6} md={4}>
                 <Card
@@ -183,17 +202,18 @@ export default function Album() {
                     component="img"
                     sx={{
                       // 16:9
-                      pt: '56.25%',
+                      pt: '25px',
+                      bgcolor: '#f6f6f6',
                     }}
                     image="https://source.unsplash.com/random"
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {card.First_Name}
+                      {card.First_Name + " " + card.Last_Name}
                     </Typography>
                     <Typography>
-                      {card.Last_Name}
+                      {}
                     </Typography>
                     <Typography>
                       {card.Phone}
@@ -201,6 +221,7 @@ export default function Album() {
                   </CardContent>
                   <CardActions>
                     <FormDialog Email={card.Email} updateUser={updateUser}></FormDialog>
+                    <Button sx={{ }} variant="outlined" color="error" onClick={() => deleteUser(card.Email)}>מחק</Button>
                   </CardActions>
                 </Card>
               </Grid>

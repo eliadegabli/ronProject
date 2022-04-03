@@ -20,8 +20,9 @@ app.post("/api/insert",(req,res)=>{
     const Phone = req.body.Phone;
     const FirstName = req.body.FirstName;
     const LastName = req.body.LastName;
-    const sqlInsert = "Insert Into users (Email,Phone,First_Name,Last_Name) Values (?,?,?,?);"
-    db.query(sqlInsert, [Email,Phone,FirstName,LastName] ,(err,result) =>{
+    const BirthDate = req.body.BirthDate;
+    const sqlInsert = "Insert Into users (Email,Phone,First_Name,Last_Name,Birth_Date) Values (?,?,?,?);"
+    db.query(sqlInsert, [Email,Phone,FirstName,LastName,BirthDate] ,(err,result) =>{
         res.send(result);
         console.log(result);     
         console.log(err);         
