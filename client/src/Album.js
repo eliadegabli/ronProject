@@ -18,7 +18,6 @@ import Input from '@mui/material/Input';
 import FormDialog from "./FormDialog";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Axios from "axios";
-import App from './App';
 
 function Copyright() {
   return (
