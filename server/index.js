@@ -61,6 +61,6 @@ app.post("/api/delete", (req,res) =>{
     });
 }); 
 
-app.listen(5000,() => {
-    console.log("run on port 3001");
+app.listen(process.env.PORT || PORT,() => {
+    console.log('run on port ${PORT}');
 });
