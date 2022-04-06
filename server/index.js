@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 const mysql = require("mysql");
 
 const db = mysql.createPool({
@@ -14,6 +15,7 @@ const db = mysql.createPool({
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 app.post("/api/insert",(req,res)=>{
     const Email = req.body.Email;
