@@ -15,7 +15,11 @@ const db = mysql.createPool({
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.js'));
+});
 
 app.post("/api/insert",(req,res)=>{
     const Email = req.body.Email;
@@ -64,7 +68,7 @@ app.post("/api/delete", (req,res) =>{
 }); 
 
 app.listen(5000,() => {
-    console.log("run on port 3001");
+    console.log("run on port 5000");
 });
 
 app.set('port', (process.env.PORT || 5000));
