@@ -15,11 +15,13 @@ const db = mysql.createPool({
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static('build'));
+    app.get('*', (req,res) => {
+        req.sendFile(path.resolve(__dirname,'build', 'index.js'));
+    })
+}
 
 app.post("/api/insert",(req,res)=>{
     const Email = req.body.Email;
